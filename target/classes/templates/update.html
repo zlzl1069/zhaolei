@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" th:inline="none"></script>
+</head>
+<body>
+<center>
+    <form th:action="@{update}" th:object="${students}" method="post">
+        <table border="1">
+            <tr>
+                <td>编&nbsp;&nbsp;&nbsp;号:<input type="text" name="id" th:value="*{id}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>用户名:<input type="text" name="name" th:value="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>电&nbsp;&nbsp;话&nbsp;:<input type="text"  name="phone" th:value="*{phone}"/></td>
+            </tr>
+            <tr>
+                <td>地&nbsp;&nbsp;址&nbsp;:<input type="text"  name="address" th:value="*{address}"/></td>
+            </tr>
+
+        </table>
+        <input type="submit" value="提交"/><input type="reset" value="重置"/>
+    </form>
+</center>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.dao.UserMapper">
+<!--    <select id="list" resultType="students">-->
+<!--        select * from students-->
+<!--    </select>-->
+    <insert id="add" parameterType="String">
+        insert into students(name,phone,address) values(#{name},#{phone},#{address})
+    </insert>
+    <update id="update" parameterType="students">
+        UPDATE students SET NAME=#{name},phone=#{phone},address=#{address} WHERE id=#{id}
+    </update>
+    <delete id="delete" parameterType="String">
+        delete from students where name=#{name}
+    </delete>
+    <select id="findByid" parameterType="int" resultType="students">
+        select * from students where id=#{id}
+    </select>
+    <select id="findList" resultType="students" parameterType="Integer">
+        select * from students
+        <where>
+            <if test="name!='' and name!=null">
+                and name LIKE COUNT ('%',#{name},'%')
+            </if>
+            <if test="phone!='' and phone!=null">
+                and phone LIKE COUNT ('%',#{phone},'%')
+            </if>
+            <if test="address!='' and address!=null">
+                and address LIKE COUNT ('%',#{address},'%')
+            </if>
+        </where>
+        limit #{currPageNo},#{pageSize}
+    </select>
+    <select id="findTotal" resultType="Integer">
+        select count(*) from students
+        <where>
+            <if test="name!='' and name!=null">
+                and name LIKE COUNT ('%',#{name},'%')
+            </if>
+            <if test="phone!='' and phone!=null">
+                and phone LIKE COUNT ('%',#{phone},'%')
+            </if>
+            <if test="address!='' and address!=null">
+                and address LIKE COUNT ('%',#{address},'%')
+            </if>
+        </where>
+
+    </select>
+</mapper>
